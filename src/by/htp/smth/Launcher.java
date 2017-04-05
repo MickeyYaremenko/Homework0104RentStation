@@ -28,8 +28,12 @@ public class Launcher {
 		KneePad element = new KneePad(summer, "KneePad Element");
 		Gloves quicksilver = new Gloves(summer, "Gloves Quicksilver");
 		
-		rentStation.setMainEquipment(new MainEquipment[][]{{bikeStels, bikeMerida, rollersIDK, skateAdio},{}});
+		rentStation.setMainEquipment(new MainEquipment[][]{{bikeStels},{bikeMerida}});
+//				{{bikeStels, bikeMerida, rollersIDK, skateAdio},{}});
 		rentStation.setAccessories(new Accessory[][]{{giant, element, quicksilver},{}});
+		
+		alex.showAllMainEquip();
+		alex.showAllAccessories();
 	}
 
 }
