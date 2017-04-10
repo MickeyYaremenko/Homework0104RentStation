@@ -1,9 +1,6 @@
 package by.htp.smth;
 
-import by.htp.equipment.Accessory;
-import by.htp.equipment.MainEquipment;
-
-public class Client{
+public class Client {
 	private int passportID;
 	private String name;
 	private RentUnit rentUnit;
@@ -31,18 +28,20 @@ public class Client{
 		this.rentUnit = rentunit;
 	}
 
-//	@Override
-//	public void makeAnOrderEquipment(String[][] mainEquipmentAccessories) {
-//		this.order = new Order(mainEquipmentAccessories);
-//		
-//	}
-//
-//	public Order getOrder() {
-//		return order;
-//	}
+	public Order getOrder() {
+		return order;
+	}
 
-	
+	public void setOrder(Order order) {
+		this.order = order;
+	}
 
+	public void createOrder(String[] mainEq, String[]... access) {
+		this.order = new Order(mainEq, access);
+	}
 
+	public void closeOrder() {
+		this.order = null;
+	}
 
 }

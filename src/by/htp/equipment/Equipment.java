@@ -15,6 +15,14 @@ public abstract class Equipment {
 		this.title = title;
 		id = counterForID;
 	}
+	
+	
+
+	public String getTitle() {
+		return title;
+	}
+
+
 
 	@Override
 	public String toString() {

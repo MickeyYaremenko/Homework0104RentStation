@@ -1,29 +1,65 @@
 package by.htp.smth;
 
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import by.htp.equipment.Accessory;
+import by.htp.equipment.Equipment;
 import by.htp.equipment.MainEquipment;
 
-public class RentUnit {
+public class RentUnit implements TimeCounter{
 	
 	private MainEquipment[] units;
-	private int emptySlots;
+	private LocalDateTime returnTime;
 	
-	public RentUnit() {
+ 	public RentUnit() {
 		this.units = new MainEquipment[3];
-		this.emptySlots = 3;
 	}
 
 	public MainEquipment[] getUnits() {
 		return units;
 	}
 	
-	public int checkEmptySlotsNumber(){
-		this.emptySlots = this.units.length;
-		for (int i = 0; i < this.units.length; i++){
-			if (this.units[i] != null){
-			this.emptySlots--;
+	public void addMainEquip(MainEquipment equip){
+		if (equip == null) {
+			System.out.println("Incorrect equipment entered");
+		} else if (checkEmptyRoom() > 0) {
+			int position = 0;
+			while (units[position] != null) {
+				position++;
+			}
+			units[position] = equip;
+		} else {
+			System.out.println("You can't rent more than 3 main items.");
+		}
+
+	}
+
+	public void rentAccessories(int position, Accessory[] accessories) {
+		units[position].setAccesories(accessories);
+	}
+	
+	public int checkEmptyRoom() {
+		int emptyRoom = 0;
+		for (Equipment unit : units) {
+			if (unit == null) {
+				emptyRoom++;
 			}
 		}
-		return this.emptySlots;
+		return emptyRoom;
 	}
+
+	
+	@Override
+	public void setReturnTime(int hours) {
+		returnTime = LocalDateTime.now().plusHours(hours);
+	}
+
+	public LocalDateTime getReturnTime() {
+		return returnTime;
+	}
+	
+	
+	
 
 }
