@@ -1,5 +1,6 @@
-package by.htp.smth;
+package by.htp.rentstation;
 
+import by.htp.client.Client;
 import by.htp.equipment.Accessory;
 import by.htp.equipment.Equipment;
 import by.htp.equipment.MainEquipment;

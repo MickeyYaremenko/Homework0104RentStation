@@ -1,4 +1,4 @@
-package by.htp.smth;
+package by.htp.rentstation;
 
 public interface TimeCounter {
 	final static long HOUR_TO_MILLISECONDS = 3600000L;

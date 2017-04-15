@@ -1,12 +1,15 @@
-package by.htp.smth;
+package by.htp.rentstation;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Random;
 
+import by.htp.client.Client;
+import by.htp.client.Order;
+import by.htp.client.RentUnit;
 import by.htp.equipment.Accessory;
 
-public class Seller {
+public final class Seller {
 
 	private String name;
 	private RentStation rentStation;

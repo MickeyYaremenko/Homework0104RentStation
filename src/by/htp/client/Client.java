@@ -1,4 +1,4 @@
-package by.htp.smth;
+package by.htp.client;
 
 public class Client {
 	private int passportID;

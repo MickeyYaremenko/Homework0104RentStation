@@ -1,4 +1,4 @@
-package by.htp.smth;
+package by.htp.client;
 
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -6,6 +6,7 @@ import java.util.Date;
 import by.htp.equipment.Accessory;
 import by.htp.equipment.Equipment;
 import by.htp.equipment.MainEquipment;
+import by.htp.rentstation.TimeCounter;
 
 public class RentUnit implements TimeCounter{
 	
