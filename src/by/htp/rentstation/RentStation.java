@@ -1,5 +1,7 @@
 package by.htp.rentstation;
 
+import java.time.LocalDateTime;
+
 import by.htp.client.Client;
 import by.htp.equipment.Accessory;
 import by.htp.equipment.Equipment;
@@ -11,12 +13,15 @@ public class RentStation {
 	private Accessory[][] accessories;
 	private Client[] clientBase;
 	private int clientCounter;
+	private LocalDateTime stationTime;
+	private int dayCounter;
 
 	{
 		mainEquipment = new MainEquipment[10][2];
 		accessories = new Accessory[10][2];
 		clientBase = new Client[10];
 		clientCounter = 0;
+		stationTime = LocalDateTime.now();
 	}
 
 	public void newClient(Client client) {
@@ -160,6 +165,20 @@ public class RentStation {
 			tempAccess[i][1] = accessories[i][1];
 		}
 		accessories = tempAccess;
+	}
+
+	
+	public LocalDateTime getStationTime() {
+		return stationTime;
+	}
+
+	public void nextDay(){
+		this.stationTime = this.stationTime.plusDays(1);
+		dayCounter++;
+	}
+	
+	public void resetTime(){
+		this.stationTime = LocalDateTime.now();
 	}
 	
 }

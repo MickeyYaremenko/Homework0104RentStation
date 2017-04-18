@@ -8,6 +8,7 @@ import by.htp.client.Client;
 import by.htp.client.Order;
 import by.htp.client.RentUnit;
 import by.htp.equipment.Accessory;
+import by.htp.io.MyWriter;
 
 public final class Seller {
 
@@ -147,12 +148,7 @@ public final class Seller {
 		}
 		rentStation.trimAll();
 		if (checkClient(client)) {
-			LocalDateTime time = LocalDateTime.now().plusHours((new Random().nextInt(8)));
-			LocalDateTime clientRentTime = client.getRentUnit().getReturnTime();
-			if (time.isAfter(clientRentTime)) {
-				System.out.println("Sorry but equipment rent time is greater than allowed."
-						+ "You had to return this order by: " + clientRentTime + ". Current time is : " + time
-						+ ". You need to close order first!");
+			if (checkReturnTime(client)) {
 				return;
 			}
 			showClientInventory(client);
@@ -161,6 +157,8 @@ public final class Seller {
 			client.setOrder(checkOrderSize(client.getOrder(), rentUnit));
 			rentUnit = rentMainEquip(rentUnit, client.getOrder());
 			rentUnit = rentAccessories(rentUnit, client.getOrder());
+			rentUnit.setReturnTime(rentStation.getStationTime(), 12); // TODO add constant for rent time
+			rentUnit.setRentTime(rentStation.getStationTime());
 			client.setRentUnit(rentUnit);
 			client.getOrder().getMainEquipmentOrder();
 		} else {
@@ -169,10 +167,23 @@ public final class Seller {
 			client.setOrder(checkOrderSize(client.getOrder(), rentUnit));
 			rentUnit = rentMainEquip(rentUnit, client.getOrder());
 			rentUnit = rentAccessories(rentUnit, client.getOrder());
-			rentUnit.setReturnTime(3); // TODO add constant for rent time
+			rentUnit.setReturnTime(rentStation.getStationTime(), 12); // TODO add constant for rent time
+			rentUnit.setRentTime(rentStation.getStationTime());
 			client.setRentUnit(rentUnit);
 			client.closeOrder();
 		}
+	}
+
+	private boolean checkReturnTime(Client client) {
+		LocalDateTime time = rentStation.getStationTime();
+		LocalDateTime clientRentTime = client.getRentUnit().getReturnTime();
+		if (time.isAfter(clientRentTime)) {
+			System.out.println(
+					"Sorry but equipment rent time is greater than allowed." + "You had to return this order by: "
+							+ clientRentTime + ". Current time is : " + time + ". You need to close order first!");
+			return true;
+		}
+		return false;
 	}
 
 	private Order checkOrderSize(Order order, RentUnit rentUnit) {
@@ -193,9 +204,9 @@ public final class Seller {
 	private void showExtraMainEquip(Order order, RentUnit rentUnit) {
 		String[] extraMain = Arrays.copyOfRange(order.getMainEquipmentOrder(), rentUnit.checkEmptyRoom(),
 				order.getMainEquipmentOrder().length);
-//		if (extraMain.length != 0){
+		// if (extraMain.length != 0){
 		System.out.println(Arrays.toString(extraMain) + " will be left on base.");
-//		}
+		// }
 	}
 
 	private void showExtraAccessory(Order order, RentUnit rentUnit) {
@@ -238,6 +249,7 @@ public final class Seller {
 	}
 
 	private void showClientInventory(Client client) {
+		System.out.println("Your current inventory:");
 		for (int i = 0; i < client.getRentUnit().getUnits().length; i++) {
 			if (client.getRentUnit().getUnits()[i] != null) {
 				System.out.println(client.getRentUnit().getUnits()[i]);
@@ -259,10 +271,13 @@ public final class Seller {
 	public void returnEquipment(Client client) {
 		RentUnit tempRentUnit = client.getRentUnit();
 		for (int i = 0; i < tempRentUnit.getUnits().length; i++) {
-			if (tempRentUnit.getUnits()[i].getAccesories() != null) {
-				for (int j = 0; j < tempRentUnit.getUnits()[i].getAccesories().length; j++) {
-					int position = positionInStationAccess(tempRentUnit.getUnits()[i].getAccesories()[j].getTitle());
-					this.rentStation.changeAccessoryStatus(position);
+			if (tempRentUnit.getUnits()[i] != null) {
+				if (tempRentUnit.getUnits()[i].getAccesories() != null) {
+					for (int j = 0; j < tempRentUnit.getUnits()[i].getAccesories().length; j++) {
+						int position = positionInStationAccess(
+								tempRentUnit.getUnits()[i].getAccesories()[j].getTitle());
+						this.rentStation.changeAccessoryStatus(position);
+					}
 				}
 			}
 		}
@@ -274,5 +289,18 @@ public final class Seller {
 			}
 		}
 		client.setRentUnit(new RentUnit());
+	}
+
+	public void reportForDaysRange(int days) {
+		LocalDateTime upperLimit = LocalDateTime.now().plusDays(days);
+		LocalDateTime rentTime;
+		LocalDateTime lowerLimit = LocalDateTime.now().minusMinutes(1); //1 just because
+		
+		for (int i = 0; i < rentStation.getClientCounter(); i++){
+			rentTime = rentStation.getClientBase()[i].getRentUnit().getRentTime();
+			if (rentTime.isBefore(upperLimit) && rentTime.isAfter(lowerLimit)){
+				MyWriter.printReport(rentStation.getClientBase()[i]);
+			}
+		}
 	}
 }

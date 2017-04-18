@@ -1,0 +1,4 @@
+Maxim
+RentUnit [units=[Main equip [title=Bike Giant Alfa, category=SUMMER, id=2, Accesories=null], Main equip [title=Bike Kelis, category=SUMMER, id=10, Accesories=null], Main equip [title=Rollers Blades, category=SUMMER, id=11, Accesories=[Accesory [title=Helmet Adio, category=SPRING, id=12], Accesory [title=Gloves DC, category=SPRING, id=13]]]]]
+Fedor
+RentUnit [units=[null, null, null]]

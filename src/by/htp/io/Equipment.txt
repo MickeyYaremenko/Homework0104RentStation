@@ -1,0 +1,14 @@
+Bike,SUMMER,Bike Stels 430
+Bike,Summer,Bike Giant Alfa
+Bike,Summer,Bike Specialized
+Bike,Summer,Bike LTD
+Bike,Summer,Bike AIST
+Bike,Summer,Bike Fuji
+Bike,Summer,Bike Cube
+Bike,Summer,Bike Nakxus
+Bike,Summer,Bike TREK
+Bike,Summer,Bike Kelis
+Rollers,Summer,Rollers Blades
+Helmet,Spring,Helmet Adio
+Gloves,Spring,Gloves DC
+Glasses,Summer,Glasses Ray Ban
