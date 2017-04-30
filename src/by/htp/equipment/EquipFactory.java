@@ -6,8 +6,8 @@ public abstract class EquipFactory {
 	
 	public static Equipment createEquip(String[] read){
 		String equipType = read[0].toLowerCase();
-		String title = read[2];
 		String category = read[1];
+		String title = read[2];
 		switch (equipType){
 			case "bike":
 				Equipment bike = new Bike(Category.valueOf(category.toUpperCase()), title);

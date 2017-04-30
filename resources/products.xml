@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.it-academy.by/equipXMLSchema" xsi:schemaLocation="http://www.it-academy.by/equipXMLSchema equipXMLSchema.xsd">
+
+
+	<rollers>
+		<category>SPRING</category>
+		<title>Rollers 90's</title>
+	</rollers>
+
+	<bike>
+		<category>SUMMER</category>
+		<title>Bike Moongoose v.3</title>
+	</bike>
+
+	<rollers>
+		<category>SUMMER</category>
+		<title>Rollers 80's</title>
+	</rollers>
+
+	<bike>
+		<category>WINTER</category>
+		<title>Bike Orianna v.4</title>
+	</bike>
+
+
+
+
+</products>
