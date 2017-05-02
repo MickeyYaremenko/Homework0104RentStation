@@ -31,7 +31,7 @@ public abstract class EquipFactory {
 				Equipment kneePad = new KneePad(Category.valueOf(category.toUpperCase()), title);
 				return kneePad;
 			default:
-				System.out.println("You've enetered some wrong data");
+				System.out.println("You've enetred some wrong data");
 		}
 		return null;
 	}
