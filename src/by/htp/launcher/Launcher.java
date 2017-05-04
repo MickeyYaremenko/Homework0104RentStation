@@ -34,19 +34,18 @@ public class Launcher {
 		Client fedor = new Client(18769, "Fedor");
 		String[] main2 = { "Bike Stels 420" };
 		String[][] access2 = { { "Helmet Giant" }, {} };
-		// fedor.createOrder(main2, access2);
-		//
-		// alex.serveOrder(maxim);
-		//
-		// maxim.createOrder(main, access);
-		// alex.serveOrder(maxim);
-		//
-		// // alex.showAllMainEquip();
-		// // alex.showAvailableMainEquip();
-		// // alex.showAllAccessories();
-		// alex.serveOrder(fedor);
-		//
-		// alex.reportForDaysRange(2);
+		fedor.createOrder(main2, access2);
+
+		alex.serveOrder(maxim);
+
+		maxim.createOrder(main, access);
+		alex.serveOrder(maxim);
+
+		alex.serveOrder(fedor);
+		alex.showAllMainEquip();
+		alex.showAvailableMainEquip();
+		alex.showAllAccessories();
+		alex.reportForDaysRange(2);
 
 	}
 
